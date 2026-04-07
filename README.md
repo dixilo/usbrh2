@@ -70,7 +70,7 @@ python3 usbrh2.py E02A --interval 30
 
 ## Daily Temperature Logging
 
-To write temperature logs to daily files, run:
+To write temperature and humidity logs to daily files, run:
 
 ```bash
 python3 temperature_logger.py E02A
@@ -103,9 +103,9 @@ python3 temperature_logger.py E02A --prefix room1 --output-dir ./logs
 Each file contains:
 
 ```text
-# Datetime temperature[C]
-2026-04-07T12:00:00+09:00 24.96
-2026-04-07T12:00:10+09:00 24.95
+# Datetime temperature[C] humidity[%]
+2026-04-07T12:00:00+09:00 24.96 39.32
+2026-04-07T12:00:10+09:00 24.95 39.20
 ```
 
 The logger switches to a new file automatically when the local date changes.

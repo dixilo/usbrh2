@@ -10,7 +10,7 @@ from usbrh2 import USBRH2
 
 DEFAULT_INTERVAL = 10.0
 DEFAULT_PREFIX = "temperature"
-HEADER = "# Datetime temperature[C]"
+HEADER = "# Datetime temperature[C] humidity[%]"
 
 
 def parse_args() -> argparse.Namespace:
@@ -81,7 +81,11 @@ def main() -> None:
                     current_handle = open_log_file(log_path)
                     current_path = log_path
 
-                current_handle.write(f"{now.isoformat()} {measurement.temperature_c:.2f}\n")
+                current_handle.write(
+                    f"{now.isoformat()} "
+                    f"{measurement.temperature_c:.2f} "
+                    f"{measurement.humidity_rh:.2f}\n"
+                )
                 current_handle.flush()
         finally:
             if current_handle is not None:

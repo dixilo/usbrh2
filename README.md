@@ -24,6 +24,7 @@ pip install -r requirements.txt
 ## Files
 
 - [`usbrh2.py`](/Users/jsuzuki/program/usbrh2/usbrh2.py): USBRH2 driver class and CLI
+- [`temperature_logger.py`](/Users/jsuzuki/program/usbrh2/temperature_logger.py): daily temperature logging CLI
 - [`requirements.txt`](/Users/jsuzuki/program/usbrh2/requirements.txt): Python dependency list
 
 ## Connection Settings
@@ -66,6 +67,48 @@ You can also change the measurement interval:
 ```bash
 python3 usbrh2.py E02A --interval 30
 ```
+
+## Daily Temperature Logging
+
+To write temperature logs to daily files, run:
+
+```bash
+python3 temperature_logger.py E02A
+```
+
+This creates files named like:
+
+```text
+temperature_20260407.dat
+```
+
+You can customize the filename prefix:
+
+```bash
+python3 temperature_logger.py E02A --prefix room1
+```
+
+This creates files named like:
+
+```text
+room1_20260407.dat
+```
+
+You can also choose a different output directory:
+
+```bash
+python3 temperature_logger.py E02A --prefix room1 --output-dir ./logs
+```
+
+Each file contains:
+
+```text
+# Datetime temperature[C]
+2026-04-07T12:00:00+09:00 24.96
+2026-04-07T12:00:10+09:00 24.95
+```
+
+The logger switches to a new file automatically when the local date changes.
 
 ## Output Format
 
